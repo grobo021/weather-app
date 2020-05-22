@@ -1,4 +1,7 @@
 import crypto from 'crypto';
+import request from 'request';
+
+const apiVersion = 'v5.0';
 
 class FBeamer {
     constructor({ pageAccessToken, verifyToken, appSecret }) {
@@ -37,7 +40,7 @@ class FBeamer {
         return (req, res, buf) => {
             if (req.method === 'POST') {
                 try {
-                    const signature = req.headers('x-hub-signature');
+                    const signature = req.headers['x-hub-signature'];
                     if (!signature) {
                         throw new Error('Signature not recieved');
                     } else {
@@ -53,9 +56,67 @@ class FBeamer {
         };
     }
 
-    incoming(req, res) {
+    incoming(req, res, cb) {
         res.status(200);
-        console.log(req);
+        if (req.body.object === 'page' && req.body.entry) {
+            const data = req.body;
+            data.entry.forEach((pageObj) => {
+                if (pageObj.messaging) {
+                    pageObj.messaging.forEach((messageObj) => {
+                        if (messageObj.postback) {
+                            // handle postbacks
+                        } else {
+                            return cb(this.messageHandler(messageObj));
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    messageHandler(obj) {
+        const sender = obj.sender.id;
+        const message = obj.message;
+        if (message.text) {
+            return {
+                sender,
+                type: 'text',
+                text: message.text
+            };
+        }
+    }
+
+    sendMessage(payload) {
+        return new Promise(async (resolve, reject) => {
+            request({
+                url: `https://graph.facebook.com/${apiVersion}/me/messages`,
+                qs: {
+                    access_token: this.pageAccessToken
+                },
+                method: 'POST',
+                json: payload
+            }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    resolve({
+                        mid: body.message_id
+                    });
+                } else {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    txt(id, text, messaging_type = 'RESPONSE') {
+        return this.sendMessage({
+            messaging_type,
+            recipient: {
+                id
+            },
+            message: {
+                text
+            }
+        });
     }
 };
 

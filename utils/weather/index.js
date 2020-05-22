@@ -14,10 +14,10 @@ const getWeather = (location) => {
         try {
             const weatherConditions = await axios.get(
                 'http://api.weatherstack.com/forecast', {
-                    params: {
-                        access_key: '491356017811be58e81373304fd6ee46',
-                        query: location
-                    }
+                params: {
+                    access_key: '491356017811be58e81373304fd6ee46',
+                    query: location
+                }
             });
             resolve(formatData(weatherConditions.data));
         } catch (error) {
