@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import request from 'request';
+import axios from 'axios';
 
 const apiVersion = 'v5.0';
 
@@ -88,22 +88,13 @@ class FBeamer {
 
     sendMessage(payload) {
         return new Promise(async (resolve, reject) => {
-            request({
-                url: `https://graph.facebook.com/${apiVersion}/me/messages`,
-                qs: {
-                    access_token: this.pageAccessToken
-                },
-                method: 'POST',
-                json: payload
-            }, (error, response, body) => {
-                if (!error && response.statusCode === 200) {
-                    resolve({
-                        mid: body.message_id
-                    });
-                } else {
-                    reject(error);
-                }
-            });
+            try {
+                resolve(await axios.post(`https://graph.facebook.com/${apiVersion}/me/messages?access_token=${this.pageAccessToken}`, {
+                    json: payload
+                }));
+            } catch (e) {
+                reject(e);
+            }
         });
     }
 

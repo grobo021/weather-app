@@ -21,7 +21,6 @@ app.post('/', bodyParser.json({
 app.post('/', (req, res, next) => {
     return f.incoming(req, res, async (data) => {
         try {
-            console.log(data);
             if (data.text.toLowerCase() === 'hi there') {
                 await f.txt(data.sender, 'Hey from Vanilla', 'RESPONSE');
             }
