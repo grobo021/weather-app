@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import axios from 'axios';
 
-const apiVersion = 'v5.0';
+const apiVersion = 'v7.0';
 
 class FBeamer {
     constructor({ pageAccessToken, verifyToken, appSecret }) {

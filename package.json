@@ -6,7 +6,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "env-cmd -f ./config/dev.env nodemon server.js",
-    "ngrok": "C:/Users/arora/ngrok/ngrok.exe http 3000"
+    "start": "node server.js",
+    "ngrok": "ngrok http 3000"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,9 @@
   "devDependencies": {
     "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "ngrok": "^3.2.7",
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
     "axios": "^0.19.2",
