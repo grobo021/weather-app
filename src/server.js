@@ -1,7 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import http from 'http';
-import FBeamer from './utils/fbeamer/index.js';
+const express = require('express');
+const bodyParser = require('body-parser');
+const http = require('http');
+const FBeamer = require('./utils/fbeamer/index.js');
 
 const app = express();
 const server = new http.Server(app);

@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const formatData = (data) => {
     return {
@@ -26,4 +26,4 @@ const getWeather = (location) => {
     });
 };
 
-export { getWeather as default };
+module.exports = getWeather;

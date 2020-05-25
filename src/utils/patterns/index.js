@@ -15,4 +15,4 @@ const patternDic = [{
     intent: 'WeatherForecast'
 }];
 
-export { patternDic as default };
+module.exports = patternDic;

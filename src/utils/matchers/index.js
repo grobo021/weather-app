@@ -1,5 +1,5 @@
-import XRegExp from 'xregexp';
-import patterns from '../patterns/index.js';
+const XRegExp = require('xregexp');
+const patterns = require('../patterns/index.js');
 
 const createEntities = (str, pattern) => XRegExp.exec(str, new XRegExp(pattern, 'i'));
 
@@ -15,4 +15,4 @@ const matchPattern = (str, cb) => {
         : cb({});
 };
 
-export { matchPattern as default };
+module.exports = matchPattern;

@@ -1,5 +1,5 @@
-import colors from 'colors';
-import dictionary from './dictionary.js';
+const colors = require('colors');
+const dictionary = require('./dictionary.js');
 colors.enable();
 
 const getFeel = (temp) => {
@@ -60,4 +60,4 @@ const forecastWeather = (response, data) => {
     }
 };
 
-export { getWeather, forecastWeather };
+module.exports = { getWeather, forecastWeather };

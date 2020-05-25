@@ -1,7 +1,7 @@
-import Readline from 'readline';
-import matcher from './utils/matchers/index.js';
-import weather from './utils/weather/index.js';
-import { getWeather, forecastWeather } from './utils/parser/index.js';
+const Readline = require('readline');
+const matcher = require('./utils/matchers/index.js');
+const weather = require('./utils/weather/index.js');
+const { getWeather, forecastWeather } = require('./utils/parser/index.js');
 
 const rl = Readline.createInterface({
     input: process.stdin,

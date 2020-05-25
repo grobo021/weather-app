@@ -1,5 +1,5 @@
-import crypto from 'crypto';
-import axios from 'axios';
+const crypto = require('crypto');
+const axios = require('axios');
 
 const apiVersion = 'v7.0';
 
@@ -111,4 +111,4 @@ class FBeamer {
     }
 };
 
-export { FBeamer as default };
+module.exports = FBeamer;

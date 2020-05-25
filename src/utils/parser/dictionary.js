@@ -45,4 +45,4 @@ const dictionary = [{
         prefix: 'it is'
 }];
 
-export { dictionary as default };
+module.exports = dictionary;

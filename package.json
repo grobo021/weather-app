@@ -1,22 +1,17 @@
 {
   "name": "vanilla",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "./src/server.js",
   "scripts": {
-    "start": "npm run build && node ./build/server.js",
+    "start": "node ./src/server.js",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/server.js",
-    "ngrok": "ngrok http 3000",
-    "clean": "node ./clean.js",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel"
+    "ngrok": "ngrok http 3000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
@@ -26,7 +21,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "express": "^4.17.1",
