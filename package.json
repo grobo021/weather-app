@@ -3,24 +3,30 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./src/server.js",
   "scripts": {
-    "dev": "env-cmd -f ./config/dev.env nodemon server.js",
-    "start": "node server.js",
-    "ngrok": "ngrok http 3000"
+    "start": "npm run build && node ./build/server.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon ./src/server.js",
+    "ngrok": "ngrok http 3000",
+    "clean": "node ./clean.js",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
+    "fs-extra": "^9.0.0",
     "ngrok": "^3.2.7",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "express": "^4.17.1",
