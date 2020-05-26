@@ -90,7 +90,7 @@ class FBeamer {
         return new Promise(async (resolve, reject) => {
             try {
                 resolve(await axios.post(`https://graph.facebook.com/${apiVersion}/me/messages?access_token=${this.pageAccessToken}`, {
-                    json: payload
+                    ...payload
                 }));
             } catch (e) {
                 reject(e);
